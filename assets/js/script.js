@@ -93,9 +93,25 @@ function firstAPICall(queryString) {
         });
 }
 
-function secondDataLookup(a) {
-    console.log(a)
-}
+
+// Builds the Query String to search for the movie in the TMDB Database
+function secondDataLookup(movieId) {
+    var tmdbUrl = "https://api.themoviedb.org/3/";
+    var tbdbApiKey = "38b382b8bdab2fa00b44d7c372a94aff";
+    tmdbMovieData =
+      tmdbUrl +
+      "find/" +
+      movieId +
+      "?api_key=" +
+      tbdbApiKey +
+      "&external_source=imdb_id";
+    secondAPICall(tmdbMovieData);
+  }
+
+
+
+
+
 
 // Saves IMDB Movie Data to a global variable accessible outside .then
 // Pushes data to the web page
