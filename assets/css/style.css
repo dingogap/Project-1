@@ -1,0 +1,17 @@
+.mlBtn {
+    width: fit-content;
+}
+
+.favBtn {
+    width: fit-content;
+}
+
+#movieList {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.metadata li{
+    margin-bottom: 10px;
+}
