@@ -14,3 +14,8 @@ $(document).ready(function () {
 function firstDataLookup (a) {
   console.log(a);
 }
+
+// Event Handler for clicking in the Search Bar
+$("#find-movie").click(function () {
+  $("#search-btn").show();
+});
