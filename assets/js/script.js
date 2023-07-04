@@ -9,7 +9,6 @@ $(document).ready(function () {
     movieName = $("#find-movie").val().trim().replaceAll(" ", "%20");
     $("#search-btn").hide();
     firstDataLookup(movieName);
-    console.log(movieName);
   });
 });
 
