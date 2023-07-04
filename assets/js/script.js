@@ -18,6 +18,13 @@ $("#find-movie").click(function () {
     $("#find-movie").val('');
 });
 
+// Event Handler for clicking in the Search Bar
+$("#find-movie").on("keypress", function (event) {
+    if (event.key === "Enter") {
+        $("#search-btn").click();
+    }
+});
+
 // Build the Query String to search for the movie in the OMDB Database
 function firstDataLookup(omdbMovieName) {
     var obmdbUrl = "https://www.omdbapi.com/";
@@ -97,4 +104,7 @@ function firstDataSave(firstDataReturn) {
     $("#imdb-title").text("Name: " + imdbData1.Title);
     $("#imdb-id").text("IMDB Id: " + imdbData1.imdbID);
 }
+
+
+
 
