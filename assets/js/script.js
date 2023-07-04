@@ -11,11 +11,20 @@ $(document).ready(function () {
   });
 });
 
-function firstDataLookup (a) {
-  console.log(a);
-}
-
 // Event Handler for clicking in the Search Bar
 $("#find-movie").click(function () {
-  $("#search-btn").show();
+    $("#search-btn").show();
+    $("#find-movie").val('');
 });
+
+// Build the Query String to search for the movie in the OMDB Database
+function firstDataLookup(omdbMovieName) {
+    var obmdbUrl = "https://www.omdbapi.com/";
+    var omdbApiKey = "fe3d393d";
+    omdbMovieData = obmdbUrl + "?s=" + omdbMovieName + "&apikey=" + omdbApiKey + "&type=movie";
+    firstAPICall(omdbMovieData);
+}
+
+function firstAPICall(a) {
+    console.log(a)
+}
