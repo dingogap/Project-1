@@ -2,6 +2,7 @@
 var movieName;
 
 var imdbData1 = {};
+var tmdbData1 = []
 
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
@@ -108,9 +109,31 @@ function secondDataLookup(movieId) {
     secondAPICall(tmdbMovieData);
   }
 
+  // Fetch the data, update display fields and then call the 3rd search 
+function secondAPICall(queryString) {
+    fetch(queryString, {
+        method: "GET",
+        credentials: "same-origin",
+        redirect: "follow",
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            $(document).ready(function () {
+                $('.collapsible').collapsible();
+            });
+            var tmdbMovie = data.movie_results;
+            if (tmdbMovie.length > 0) {
+                secondDataSave(tmdbMovie[0])
+                thirdDataLookup(tmdbMovie[0].id);
+            }
+        });
+}
 
-
-
+function thirdDataLookup(a) {
+    console.log(a)
+}
 
 
 // Saves IMDB Movie Data to a global variable accessible outside .then
@@ -119,8 +142,24 @@ function firstDataSave(firstDataReturn) {
     imdbData1 = firstDataReturn;
     $("#imdb-title").text("Name: " + imdbData1.Title);
     $("#imdb-id").text("IMDB Id: " + imdbData1.imdbID);
+    console.log(imdbData1);
 }
 
+// Saves TMDB Movie Data to a global variable accessible outside .then
+// Pushes data to the web page
+function secondDataSave(secondDataReturn) {
+    tmdbData1 = secondDataReturn;
+    $("#tmdb-id").text("TMDB Id: " + tmdbData1.id);
+    $("#tmdb-release-date").text("Released: " + dayjs(tmdbData1.release_date).format('DD-MM-YYYY'));
+    $("#tmdb-overview").text("Overview: " + tmdbData1.overview);
+    $("#tmdb-popularity").text("Popularity: " + tmdbData1.popularity);
 
+    $("#poster-path").attr(
+        "src",
+        "https://www.themoviedb.org/t/p/w300_and_h450_bestv2" +
+        tmdbData1.poster_path
+    );
+    console.log(tmdbData1);
+}
 
 
