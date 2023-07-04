@@ -22,7 +22,7 @@
 
         <!-- Div for Search Field for Movie Name -->
         <div class="row">
-            <input id="findMovie" placeholder="Type Movie Name" type="text" class="validate">
+            <input id="find-novie" placeholder="Type Movie Name" type="text" class="validate">
         </div>
 
         <!-- Div for Buttons - each button has its own ID for the Click Handler -->
@@ -46,36 +46,36 @@
             <!-- Display Metadata -->
             <div class="col s8">
                 <ul class="metadata">
-                    <li id="imdbMovie"></li>
-                    <li id="releaseDate"></li>
-                    <li id="imdbId"></li>
-                    <li id="tmdbId"></li>
-                    <li id="tmdbOverview"></li>
-                    <li id="popularity"></li>
+                    <li id="imdb-movie"></li>
+                    <li id="tmdb-release-date"></li>
+                    <li id="imdb-id"></li>
+                    <li id="tmdb-id"></li>
+                    <li id="tmdb-overview"></li>
+                    <li id="tmdb-popularity"></li>
                 </ul>
             </div>
 
             <!-- Display Poster -->
             <div class="col s4">
                 <ul>
-                    <img id="posterPath" class="responsive-img">
+                    <img id="poster-path" class="responsive-img">
                 </ul>
             </div>
         </div>
 
         <!-- Div to hold collapsible structure to display reviews - limited to 3 by design -->
         <div class="row">
-            <ul class="reviewList collapsible" style="display: none;">
-                <li id="revLi0" style="display: none;">
-                    <div id="review0Title" class="collapsible-header"></div>
+            <ul class="review-list collapsible" style="display: none;">
+                <li id="rev-li0" style="display: none;">
+                    <div id="review0-title" class="collapsible-header"></div>
                     <div class="collapsible-body"><span id="review0"></span></div>
                 </li>
-                <li id="revLi1" style="display: none;">
-                    <div id="review1Title" class="collapsible-header"></div>
+                <li id="rev-li1" style="display: none;">
+                    <div id="review1-title" class="collapsible-header"></div>
                     <div class="collapsible-body"><span id="review1"></span></div>
                 </li>
-                <li id="revLi2" style="display: none;">
-                    <div id="review2Title" class="collapsible-header"></div>
+                <li id="rev-li2" style="display: none;">
+                    <div id="review2-title" class="collapsible-header"></div>
                     <div class="collapsible-body"><span id="review2"></span></div>
                 </li>
             </ul>
@@ -85,9 +85,9 @@
     <!-- Div to hold the Modal framework used for messaging-->
     <div id="modal" class="modal">
         <div class="modal-content">
-            <h5 id="modalHeader"></h5>
+            <h5 id="modal-header"></h5>
             <hr />
-            <div id="movieList">
+            <div id="movie-list">
 
             </div>
         </div>

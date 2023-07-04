@@ -1,12 +1,12 @@
-.mlBtn {
+.ml-btn {
     width: fit-content;
 }
 
-.favBtn {
+.fav-btn {
     width: fit-content;
 }
 
-#movieList {
+#movie-list {
     display: flex;
     flex-direction: column;
     gap: 5px;
