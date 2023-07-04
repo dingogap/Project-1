@@ -1,3 +1,4 @@
+// Globals
 var movieName;
 
 // Click handler for search button - won't work until the page is fully loaded
@@ -9,3 +10,7 @@ $(document).ready(function () {
     console.log(movieName);
   });
 });
+
+function firstDataLookup (a) {
+  console.log(a);
+}
