@@ -1,6 +1,8 @@
 // Globals
 var movieName;
 
+var imdbData1 = {};
+
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
   $("#search-btn").click(function () {
@@ -25,6 +27,75 @@ function firstDataLookup(omdbMovieName) {
     firstAPICall(omdbMovieData);
 }
 
-function firstAPICall(a) {
+// Fetch the data, update display fields and then call the 2nd search 
+function firstAPICall(queryString) {
+    fetch(queryString, {
+        method: "GET",
+        credentials: "same-origin",
+        redirect: "follow",
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var checkData = data
+            if (checkData.Response === "False") {
+                /* resetModalInputs(); */
+                $("#modal-header").text("We can't find movie you entered: " + $("#find-movie").val().trim());
+                $("#movie-list").append(
+                    '<p class="no-movie">Please check the name of the movie and try again</p>'
+                )
+                $("#modal").modal();
+                $(".modal-close").text('Try Again')
+                $("#modal").modal("open");
+                return
+            }
+            var imdbMovie = data.Search;
+            if (imdbMovie.length > 1) {
+                var j;
+                $("#modal-header").text($("#find-movie").val());
+                for (i = 0; i < imdbMovie.length; i++) {
+                    $("#movie-list").append(
+                        "<button value=" +
+                        i +
+                        ' class="ml-btn waves-effect waves-light btn-small">' +
+                        imdbMovie[i].Title +
+                        " (" +
+                        imdbMovie[i].Year +
+                        ")</button>"
+                    );
+                }
+                $(".modal-close").text('Cancel')
+                $("#modal").modal();
+                $("#modal").modal("open");
+                $(".ml-btn").click(function (event) {
+                    j = event.target.value;
+
+                    $("#find-movie").val("");
+                    $("#modal").modal("close");
+                    firstDataSave(imdbMovie[j])
+                    secondDataLookup(imdbMovie[j].imdbID);
+                });
+            } else {
+                $("#find-movie").val("");
+                firstDataSave(imdbMovie[0])
+                $("#imdb-title").text("Name: " + imdbMovie[0].Title);
+                $("#imdb-id").text("IMDB Id: " + imdbMovie[0].imdbID);
+                secondDataLookup(imdbMovie[0].imdbID);
+            }
+            $("#find-movie").val("");
+        });
+}
+
+function secondDataLookup(a) {
     console.log(a)
 }
+
+// Saves IMDB Movie Data to a global variable accessible outside .then
+// Pushes data to the web page
+function firstDataSave(firstDataReturn) {
+    imdbData1 = firstDataReturn;
+    $("#imdb-title").text("Name: " + imdbData1.Title);
+    $("#imdb-id").text("IMDB Id: " + imdbData1.imdbID);
+}
+
