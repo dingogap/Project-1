@@ -19,7 +19,7 @@ $("#find-movie").click(function () {
     $("#find-movie").val('');
 });
 
-// Event Handler for clicking in the Search Bar
+// Event Handler for enter key clicking in the Search Bar
 $("#find-movie").on("keypress", function (event) {
     if (event.key === "Enter") {
         $("#search-btn").click();
@@ -154,12 +154,15 @@ function secondDataSave(secondDataReturn) {
     $("#tmdb-overview").text("Overview: " + tmdbData1.overview);
     $("#tmdb-popularity").text("Popularity: " + tmdbData1.popularity);
 
+    var tmdbUserScore = Math.round(tmdbData1.vote_average * 10);
+    $("#tmdb-user-score").text("TMDB user score: " + tmdbUserScore + "%");
     $("#poster-path").attr(
         "src",
         "https://www.themoviedb.org/t/p/w300_and_h450_bestv2" +
         tmdbData1.poster_path
     );
     console.log(tmdbData1);
+    console.log(tmdbData1.vote_average);
 }
 
 
