@@ -1,8 +1,12 @@
 // Globals
 var movieName;
+var movies = []
+var collection = "collection"
+var movie_results
 
 var imdbData1 = {};
 var tmdbData1 = []
+var tmdbData2 = []
 
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
@@ -31,7 +35,6 @@ $("#find-movie").click(function () {
     resetInputs();
     resetModalInputs()
 });
-
 
 // Build the Query String to search for the movie in the OMDB Database
 function firstDataLookup(omdbMovieName) {
@@ -167,8 +170,6 @@ function thirdAPICall(queryString) {
         });
 }
 
-
-
 // Saves IMDB Movie Data to a global variable accessible outside .then
 // Pushes data to the web page
 function firstDataSave(firstDataReturn) {
@@ -230,7 +231,6 @@ function thirdDataSave(thirdDataReturn) {
         $("#add-fav-btn").show();
     }
 }
-
 
 // Resets all populated elements to default
 function resetInputs() {
