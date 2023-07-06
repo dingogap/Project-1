@@ -61,6 +61,9 @@ $("#add-fav-btn").click(function () {
   }
 
   localStorage.setItem(collection, JSON.stringify(movies));
+    $("#add-fav-btn").hide();
+    $("#del-fav-btn").show();
+    $("#view-fav-btn").show();
 });
 
 // Build the Query String to search for the movie in the OMDB Database
