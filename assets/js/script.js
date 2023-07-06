@@ -8,6 +8,9 @@ var imdbData1 = {};
 var tmdbData1 = [];
 var tmdbData2 = [];
 
+// Read Movie Collection from Local Storage
+movies = JSON.parse(localStorage.getItem(collection));
+
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
   $("#search-btn").click(function () {
