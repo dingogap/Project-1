@@ -36,6 +36,29 @@ $("#find-movie").click(function () {
     resetModalInputs()
 });
 
+// Click Handler for Add To Favourites Button
+$("#add-fav-btn").click(function () {
+    if (movies === null) {
+        movies = [[
+            imdbData1.Title,
+            imdbData1.imdbID,
+            tmdbData1.id,
+            dayjs(tmdbData1.release_date).format('DD-MM-YYYY')
+        ]]
+    } else {
+        movies.push([
+            imdbData1.Title,
+            imdbData1.imdbID,
+            tmdbData1.id,
+            dayjs(tmdbData1.release_date).format('DD-MM-YYYY')
+        ]);
+        movies.sort()
+    }
+
+    localStorage.setItem(collection, JSON.stringify(movies));
+});
+
+
 // Build the Query String to search for the movie in the OMDB Database
 function firstDataLookup(omdbMovieName) {
     var obmdbUrl = "https://www.omdbapi.com/";
@@ -220,7 +243,8 @@ function thirdDataSave(thirdDataReturn) {
     if (tmdbData2.length > 0) {
         $(".review-list").show();
     }
-    if (movies != null) {
+
+/*     if (movies != null) {
         if (isFavourite(imdbData1.Title, imdbData1.imdbID)) {
             $("#add-fav-btn").hide();
             $("#del-fav-btn").show();
@@ -230,7 +254,7 @@ function thirdDataSave(thirdDataReturn) {
     } else {
         $("#add-fav-btn").show();
     }
-}
+} */
 
 // Resets all populated elements to default
 function resetInputs() {
