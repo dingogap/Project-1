@@ -306,7 +306,7 @@ function resetInputs() {
   $("#search-btn").show();
   $("#modal-header").text("");
 
-//   $("#add-fav-btn").hide();
+  // $("#add-fav-btn").hide();
   $("#del-fav-btn").hide();
 }
 
