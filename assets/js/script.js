@@ -208,7 +208,23 @@ function firstDataSave(firstDataReturn) {
   imdbData1 = firstDataReturn;
   $("#imdb-title").text("Name: " + imdbData1.Title);
   $("#imdb-id").text("IMDB Id: " + imdbData1.imdbID);
+  $("#add-fav-btn").show();
   console.log(imdbData1);
+  isItemInLocalStorage();
+}
+
+function isItemInLocalStorage() {
+  if (movies) {
+    for (var i = 0; i < movies.length; i++) {    
+      var checkMovie = imdbData1.Title;
+      var checkId = imdbData1.imdbID;
+      if (checkMovie === movies[i][0] && checkId === movies[i][1]){
+        $("#add-fav-btn").hide();
+      } else {
+        $("#add-fav-btn").show();  
+      }  
+    }
+  }
 }
 
 // Saves TMDB Movie Data to a global variable accessible outside .then
