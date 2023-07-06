@@ -26,6 +26,13 @@ $("#find-movie").on("keypress", function (event) {
     }
 });
 
+// Event Handler for clicking in the Search Bar
+$("#find-movie").click(function () {
+    resetInputs();
+    resetModalInputs()
+});
+
+
 // Build the Query String to search for the movie in the OMDB Database
 function firstDataLookup(omdbMovieName) {
     var obmdbUrl = "https://www.omdbapi.com/";
@@ -166,3 +173,47 @@ function secondDataSave(secondDataReturn) {
 }
 
 
+// Resets all populated elements to default
+function resetInputs() {
+    $("#find-movie").val("");
+
+    $("#imdb-title").text("");
+    $("#tmdb-release-date").text("");
+    $("#imdb-id").text("");
+    $("#tmdb-id").text("");
+    $("#tmdb-user-score").text("");
+    $("#tmdb-overview").text("");
+    $("#tmdb-popularity").text("");
+
+    $("#poster-path").attr("src", "");
+    $("#poster-path").text("");
+    
+    $("#review0").text("");
+    $("#review1").text("");
+    $("#review2").text("");
+
+    $("#review0-title").text("");
+    $("#review1-title").text("");
+    $("#review2-title").text("");
+
+    $(".review-list").hide();
+
+    $(".ml-btn").remove();
+    $(".no-movie").remove();
+
+    $("#rev-li0").hide()
+    $("#rev-li1").hide()
+    $("#rev-li2").hide()
+
+    $("#search-btn").show();
+    $("#modal-header").text('');
+
+    $("#add-fav-btn").hide();
+    $("#del-fav-btn").hide();
+}
+
+// Removes buttons created to display movie lists in modals
+function resetModalInputs() {
+    $("#modal-header").text('');
+    $(".ml-btn").remove();    
+}
