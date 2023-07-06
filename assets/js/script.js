@@ -54,7 +54,7 @@ function firstAPICall(queryString) {
         .then(function (data) {
             var checkData = data
             if (checkData.Response === "False") {
-                /* resetModalInputs(); */
+                resetModalInputs();
                 $("#modal-header").text("We can't find movie you entered: " + $("#find-movie").val().trim());
                 $("#movie-list").append(
                     '<p class="no-movie">Please check the name of the movie and try again</p>'
@@ -138,9 +138,35 @@ function secondAPICall(queryString) {
         });
 }
 
-function thirdDataLookup(a) {
-    console.log(a)
+// Builds the Query String to search for the movie in the TMDB Database
+function thirdDataLookup(movieId) {
+    var tmdbUrl = "https://api.themoviedb.org/3/movie/";
+    var tbdbApiKey = "38b382b8bdab2fa00b44d7c372a94aff";
+    tmdbMovieData =
+        tmdbUrl +
+        movieId +
+        "/reviews?language=en-US&page=1&api_key=" +
+        tbdbApiKey +
+        "&language=en-US&page=1";
+    thirdAPICall(tmdbMovieData);
 }
+
+// Fetch the data, update display fields and then call the 3rd search 
+function thirdAPICall(queryString) {
+    fetch(queryString, {
+        method: "GET",
+        credentials: "same-origin",
+        redirect: "follow",
+    })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            var reviews = data.results;
+            thirdDataSave(reviews)
+        });
+}
+
 
 
 // Saves IMDB Movie Data to a global variable accessible outside .then
@@ -170,6 +196,39 @@ function secondDataSave(secondDataReturn) {
     );
     console.log(tmdbData1);
     console.log(tmdbData1.vote_average);
+}
+
+// Saves TMDB Review Data to a global variable accessible outside .then
+// Pushes data to the web page
+// Updates the Add To and Delete From Favourites Buttons
+function thirdDataSave(thirdDataReturn) {
+    tmdbData2 = thirdDataReturn;
+    if (tmdbData2.length > 3) {
+        for (i = 0; i < 3; i++) {
+            $("#review" + i + "-title").text("Reviewed by " + tmdbData2[i].author + " on " + dayjs(tmdbData2[i].created_at).format('DD-MM-YYYY'));
+            $("#review" + i).text(tmdbData2[i].content);
+            $("#rev-li" + i).show()
+        }
+    } else {
+        for (i = 0; i < tmdbData2.length; i++) {
+            $("#review" + i + "-title").text("Reviewed by " + tmdbData2[i].author + " on " + dayjs(tmdbData2[i].created_at).format('DD-MM-YYYY'));
+            $("#review" + i).text(tmdbData2[i].content);
+            $("#rev-li" + i).show()
+        }
+    }
+    if (tmdbData2.length > 0) {
+        $(".review-list").show();
+    }
+    if (movies != null) {
+        if (isFavourite(imdbData1.Title, imdbData1.imdbID)) {
+            $("#add-fav-btn").hide();
+            $("#del-fav-btn").show();
+        } else {
+            $("#add-fav-btn").show();
+        }
+    } else {
+        $("#add-fav-btn").show();
+    }
 }
 
 
