@@ -7,16 +7,18 @@ var movie_results;
 var imdbData1 = {};
 var tmdbData1 = [];
 var tmdbData2 = [];
+//Trailer data
+var tmdbData3 = [];
 
 // Read Movie Collection from Local Storage
 movies = JSON.parse(localStorage.getItem(collection));
-if (movies && movies.length>0) {
+if (movies && movies.length > 0) {
   $("#view-fav-btn").show();
   $("#remove-fav-btn").show();
 }
 
 // Click handler for search button - won't work until the page is fully loaded
-$(document).ready(function () {  
+$(document).ready(function () {
   $("#search-btn").click(function () {
     movieName = $("#find-movie").val().trim().replaceAll(" ", "%20");
     $("#search-btn").hide();
@@ -38,7 +40,7 @@ $("#find-movie").click(function () {
 });
 
 // Click Handler for Add To Favourites Button
-$("#add-fav-btn").click(function () {  
+$("#add-fav-btn").click(function () {
   if (movies === null) {
     movies = [
       [
@@ -59,64 +61,70 @@ $("#add-fav-btn").click(function () {
   }
 
   localStorage.setItem(collection, JSON.stringify(movies));
-    $("#add-fav-btn").hide();
-    $("#del-fav-btn").show();
-    $("#view-fav-btn").show();
-    $("#remove-fav-btn").show();
+  $("#add-fav-btn").hide();
+  $("#del-fav-btn").show();
+  $("#view-fav-btn").show();
+  $("#remove-fav-btn").show();
 });
 
 // Click Handler for Delete From Favourites Button - uses IMDB Id to ensure uniqueness
 $("#del-fav-btn").click(function () {
-    if (movies.length > 0) {
-        movies.splice(movies.findIndex(x => x.includes(imdbData1.imdbID)), 1);
-        localStorage.setItem(collection, JSON.stringify(movies));
-        $("#add-fav-btn").show();
-        $("#del-fav-btn").hide();
-        if (movies.length === 0) {
-            $("#view-fav-btn").hide();
-            $("#remove-fav-btn").hide();
-        }
-    } else {
-        $("#del-fav-btn").hide();
-        $("#view-fav-btn").hide();
-        $("#add-fav-btn").show();
-        $("#remove-fav-btn").hide();
+  if (movies.length > 0) {
+    movies.splice(
+      movies.findIndex((x) => x.includes(imdbData1.imdbID)),
+      1
+    );
+    localStorage.setItem(collection, JSON.stringify(movies));
+    $("#add-fav-btn").show();
+    $("#del-fav-btn").hide();
+    if (movies.length === 0) {
+      $("#view-fav-btn").hide();
+      $("#remove-fav-btn").hide();
     }
+  } else {
+    $("#del-fav-btn").hide();
+    $("#view-fav-btn").hide();
+    $("#add-fav-btn").show();
+    $("#remove-fav-btn").hide();
+  }
 });
 
-// Click Handler for View Favourites Button
+// Click Handler for View Favourites Button and remove trailer if but in fav list clicked.
 $(document).ready(function () {
   $("#view-fav-btn").click(function () {
-      resetModalInputs();
-      $("#modal-header").text("Favourite Movies");
-      for (i = 0; i < movies.length; i++) {
-          $("#movie-list").append(
-              "<button value=" +
-              i +
-              ' class="fav-btn waves-effect waves-light btn-small">' +
-              movies[i][0] + " (" + movies[i][3] + ")" +
-              "</button>"
-          );
-      }
-      $(".modal-close").text('Cancel')
-      $("#modal").modal();
-      $("#modal").modal("open");
-      $(".fav-btn").click(function (event) {
-          j = event.target.value;
-            imdbData1.Title = movies[j][0];
-            imdbData1.imdbID = movies[j][1];
-            firstDataSave(imdbData1)
-            $("#modal").modal("close");
-            secondDataLookup(movies[j][1]);
-      });
-  })
+    resetModalInputs();
+    $("#modal-header").text("Favourite Movies");
+    for (i = 0; i < movies.length; i++) {
+      $("#movie-list").append(
+        "<button value=" +
+          i +
+          ' class="fav-btn waves-effect waves-light btn-small">' +
+          movies[i][0] +
+          " (" +
+          movies[i][3] +
+          ")" +
+          "</button>"
+      );
+    }
+    $(".modal-close").text("Cancel");
+    $("#modal").modal();
+    $("#modal").modal("open");
+    $(".fav-btn").click(function (event) {
+      $("#trailer").remove();
+      j = event.target.value;
+      imdbData1.Title = movies[j][0];
+      imdbData1.imdbID = movies[j][1];
+      firstDataSave(imdbData1);
+      $("#modal").modal("close");
+      secondDataLookup(movies[j][1]);
+    });
+  });
 });
-
 
 // Event Handler for Modal Close
 $(".modal-close").click(function (event) {
-    resetModalInputs();
-    $("#find-movie").val("");
+  resetModalInputs();
+  $("#find-movie").val("");
 });
 
 // Build the Query String to search for the movie in the OMDB Database
@@ -269,14 +277,14 @@ function firstDataSave(firstDataReturn) {
 // Function to check if selected movie is in local storage
 function isItemInLocalStorage() {
   if (movies) {
-    if (movies.findIndex(x => x.includes(imdbData1.imdbID)) >= 0) {
+    if (movies.findIndex((x) => x.includes(imdbData1.imdbID)) >= 0) {
       $("#add-fav-btn").hide();
       $("#del-fav-btn").show();
     } else {
       $("#add-fav-btn").show();
     }
   } else {
-  $("#add-fav-btn").show();
+    $("#add-fav-btn").show();
   }
 }
 
@@ -300,6 +308,58 @@ function secondDataSave(secondDataReturn) {
   );
   console.log(tmdbData1);
   console.log(tmdbData1.vote_average);
+  movieTrailer(tmdbData1.id);
+}
+
+// Builds the Query String to search for the trailers in the TMDB Database
+function movieTrailer(movieId) {
+  var tmdbUrl = "https://api.themoviedb.org/3/movie/";
+  var tbdbApiKey = "38b382b8bdab2fa00b44d7c372a94aff";
+  tmdbMovieData =
+    tmdbUrl +
+    movieId +
+    "/videos?language=en-US&page=1&api_key=" +
+    tbdbApiKey +
+    "&language=en-US&page=1";
+  console.log(tmdbMovieData);
+  fourthAPICall(tmdbMovieData);
+}
+
+// Fetch the data and call the 4rd search
+function fourthAPICall(queryString) {
+  fetch(queryString, {
+    method: "GET",
+    credentials: "same-origin",
+    redirect: "follow",
+  })
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var movieTrailers = data.results;
+      fourthDataSave(movieTrailers);
+    });
+}
+
+// Saves TMDB Review Data to a global variable accessible outside .then
+// Pushes trailer to the web page
+function fourthDataSave(fourthDataReturn) {
+  tmdbData3 = fourthDataReturn;
+  console.log(tmdbData3);
+  for (let i = 0; i < tmdbData3.length; i++) {
+    if (
+      tmdbData3[i].type === "Trailer" &&
+      tmdbData3[i].site === "YouTube" &&
+      tmdbData3[i].official === true
+    ) {
+      $(".video-container").append(
+        '<iframe id="trailer" width="853" height="480" frameborder="0" src="https://www.youtube.com/embed/' +
+          tmdbData3[i].key +
+          '?autoplay=1&origin=https%3A%2F%2Fwww.themoviedb.org&hl=en&modestbranding=1&fs=1&autohide=1"></iframe>'
+      );
+      break;
+    }
+  }
 }
 
 // Saves TMDB Review Data to a global variable accessible outside .then
@@ -383,6 +443,9 @@ function resetInputs() {
 
   $("#add-fav-btn").hide();
   $("#del-fav-btn").hide();
+
+  // Delete trailer uppon search bar click
+  $("#trailer").remove();
 }
 
 // Removes buttons created to display movie lists in modals
@@ -392,14 +455,13 @@ function resetModalInputs() {
   $(".fav-btn").remove();
 }
 
-
 // Removes all favourites from local storage
 
-$("#remove-fav-btn").click(function (event) {  
-  localStorage.removeItem('collection'); 
+$("#remove-fav-btn").click(function (event) {
+  localStorage.removeItem("collection");
   movies = [];
   $("#del-fav-btn").hide();
   $("#view-fav-btn").hide();
   $("#add-fav-btn").show();
   $("#remove-fav-btn").hide();
-})
+});
