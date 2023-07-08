@@ -20,12 +20,6 @@ $(document).ready(function () {
   });
 });
 
-// Event Handler for clicking in the Search Bar
-$("#find-movie").click(function () {
-  $("#search-btn").show();
-  $("#find-movie").val("");
-});
-
 // Event Handler for enter key clicking in the Search Bar
 $("#find-movie").on("keypress", function (event) {
   if (event.key === "Enter") {
@@ -64,6 +58,29 @@ $("#add-fav-btn").click(function () {
     $("#add-fav-btn").hide();
     $("#del-fav-btn").show();
     $("#view-fav-btn").show();
+});
+
+// Click Handler for Delete From Favourites Button - uses IMDB Id to ensure uniqueness
+$("#del-fav-btn").click(function () {
+    if (movies.length > 0) {
+        movies.splice(movies.findIndex(x => x.includes(imdbData1.imdbID)), 1);
+        localStorage.setItem(collection, JSON.stringify(movies));
+        $("#add-fav-btn").show();
+        $("#del-fav-btn").hide();
+        if (movies.length === 0) {
+            $("#view-fav-btn").hide();
+        }
+    } else {
+        $("#del-fav-btn").hide();
+        $("#view-fav-btn").hide();
+        $("#add-fav-btn").show();
+    }
+});
+
+// Event Handler for Modal Close
+$(".modal-close").click(function (event) {
+    resetModalInputs();
+    $("#find-movie").val("");
 });
 
 // Build the Query String to search for the movie in the OMDB Database
