@@ -28,7 +28,6 @@ $(document).ready(function () {
 $("#find-movie").on("keypress", function (event) {
   if (event.key === "Enter") {
     $("#search-btn").click();
-    $("#add-fav-btn").hide();
   }
 });
 
