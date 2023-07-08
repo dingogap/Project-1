@@ -16,6 +16,7 @@ if (movies && movies.length>0) {
 
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
+  removeAllFav ();
   $("#search-btn").click(function () {
     movieName = $("#find-movie").val().trim().replaceAll(" ", "%20");
     $("#search-btn").hide();
@@ -37,7 +38,7 @@ $("#find-movie").click(function () {
 });
 
 // Click Handler for Add To Favourites Button
-$("#add-fav-btn").click(function () {
+$("#add-fav-btn").click(function () {  
   if (movies === null) {
     movies = [
       [
@@ -61,6 +62,8 @@ $("#add-fav-btn").click(function () {
     $("#add-fav-btn").hide();
     $("#del-fav-btn").show();
     $("#view-fav-btn").show();
+    
+  removeAllFav ();
 });
 
 // Click Handler for Delete From Favourites Button - uses IMDB Id to ensure uniqueness
@@ -389,4 +392,24 @@ function resetModalInputs() {
 }
 
 
+// Remove all favourites
 
+//Code to check if button should be displayed
+
+function removeAllFav () {
+  if (movies !== null && movies.length !== null) {
+    $("#remove-fav-btn").show();
+  } else {
+    $("#remove-fav-btn").hide();
+  }
+}
+
+
+
+// Removes all favourites from list
+
+$("#remove-fav-btn").click(function (event) {  
+  localStorage.removeItem('collection');
+  location.reload(); 
+  removeAllFav();
+})
