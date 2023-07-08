@@ -385,7 +385,7 @@ function resetInputs() {
 function resetModalInputs() {
   $("#modal-header").text("");
   $(".ml-btn").remove();
-  $(".favBtn").remove();
+  $(".fav-btn").remove();
 }
 
 
