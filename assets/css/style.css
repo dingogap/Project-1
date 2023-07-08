@@ -1,9 +1,10 @@
+/* additional styles for Movie Search */
 .ml-btn {
-    width: fit-content;
+    width: 100%;
 }
 
 .fav-btn {
-    width: fit-content;
+    width: 100%;
 }
 
 #movie-list {
@@ -12,6 +13,52 @@
     gap: 5px;
 }
 
-.metadata li{
+.metadata li {
     margin-bottom: 10px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* adjust styling for smart phones */
+@media (max-width: 433px) {
+
+
+    .row {
+        margin-bottom: 10px;
+    }
+
+    .metadata li {
+        margin-bottom: 5px;
+    }
+
+    .btn {
+        font-size: 12px;
+        font-weight:300;
+        padding: 0 8px;
+    }
+
+    .ml-btn {
+        width: 100%;
+    }
+
+    .fav-btn {
+        width: 100%;
+    }
+}
+
+/* adjust button size for small devices like iphone 4 */
+@media (max-width: 320px) {
+
+    .btn {
+        font-size: 11px;
+        padding: 0 6px;
+    }
 }
