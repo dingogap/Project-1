@@ -262,17 +262,17 @@ function firstDataSave(firstDataReturn) {
   isItemInLocalStorage();
 }
 
+// Function to check if selected movie is in local storage
 function isItemInLocalStorage() {
   if (movies) {
-    for (var i = 0; i < movies.length; i++) {    
-      var checkMovie = imdbData1.Title;
-      var checkId = imdbData1.imdbID;
-      if (checkMovie === movies[i][0] && checkId === movies[i][1]){
-        $("#add-fav-btn").hide();
-      } else {
-        $("#add-fav-btn").show();  
-      }  
+    if (movies.findIndex(x => x.includes(imdbData1.imdbID)) >= 0) {
+      $("#add-fav-btn").hide();
+      $("#del-fav-btn").show();
+    } else {
+      $("#add-fav-btn").show();
     }
+  } else {
+  $("#add-fav-btn").show();
   }
 }
 
