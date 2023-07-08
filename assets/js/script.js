@@ -12,11 +12,11 @@ var tmdbData2 = [];
 movies = JSON.parse(localStorage.getItem(collection));
 if (movies && movies.length>0) {
   $("#view-fav-btn").show();
+  $("#remove-fav-btn").show();
 }
 
 // Click handler for search button - won't work until the page is fully loaded
-$(document).ready(function () {
-  removeAllFav ();
+$(document).ready(function () {  
   $("#search-btn").click(function () {
     movieName = $("#find-movie").val().trim().replaceAll(" ", "%20");
     $("#search-btn").hide();
@@ -28,6 +28,7 @@ $(document).ready(function () {
 $("#find-movie").on("keypress", function (event) {
   if (event.key === "Enter") {
     $("#search-btn").click();
+    $("#add-fav-btn").hide();
   }
 });
 
@@ -62,8 +63,7 @@ $("#add-fav-btn").click(function () {
     $("#add-fav-btn").hide();
     $("#del-fav-btn").show();
     $("#view-fav-btn").show();
-    
-  removeAllFav ();
+    $("#remove-fav-btn").show();
 });
 
 // Click Handler for Delete From Favourites Button - uses IMDB Id to ensure uniqueness
@@ -75,11 +75,13 @@ $("#del-fav-btn").click(function () {
         $("#del-fav-btn").hide();
         if (movies.length === 0) {
             $("#view-fav-btn").hide();
+            $("#remove-fav-btn").hide();
         }
     } else {
         $("#del-fav-btn").hide();
         $("#view-fav-btn").hide();
         $("#add-fav-btn").show();
+        $("#remove-fav-btn").hide();
     }
 });
 
@@ -380,7 +382,7 @@ function resetInputs() {
   $("#search-btn").show();
   $("#modal-header").text("");
 
-  // $("#add-fav-btn").hide();
+  $("#add-fav-btn").hide();
   $("#del-fav-btn").hide();
 }
 
@@ -392,24 +394,13 @@ function resetModalInputs() {
 }
 
 
-// Remove all favourites
-
-//Code to check if button should be displayed
-
-function removeAllFav () {
-  if (movies !== null && movies.length !== null) {
-    $("#remove-fav-btn").show();
-  } else {
-    $("#remove-fav-btn").hide();
-  }
-}
-
-
-
-// Removes all favourites from list
+// Removes all favourites from local storage
 
 $("#remove-fav-btn").click(function (event) {  
-  localStorage.removeItem('collection');
-  location.reload(); 
-  removeAllFav();
+  localStorage.removeItem('collection'); 
+  movies = [];
+  $("#del-fav-btn").hide();
+  $("#view-fav-btn").hide();
+  $("#add-fav-btn").show();
+  $("#remove-fav-btn").hide();
 })
