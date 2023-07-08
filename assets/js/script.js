@@ -10,6 +10,9 @@ var tmdbData2 = [];
 
 // Read Movie Collection from Local Storage
 movies = JSON.parse(localStorage.getItem(collection));
+if (movies && movies.length>0) {
+  $("#view-fav-btn").show();
+}
 
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
@@ -76,6 +79,35 @@ $("#del-fav-btn").click(function () {
         $("#add-fav-btn").show();
     }
 });
+
+// Click Handler for View Favourites Button
+$(document).ready(function () {
+  $("#view-fav-btn").click(function () {
+      resetModalInputs();
+      $("#modal-header").text("Favourite Movies");
+      for (i = 0; i < movies.length; i++) {
+          $("#movie-list").append(
+              "<button value=" +
+              i +
+              ' class="fav-btn waves-effect waves-light btn-small">' +
+              movies[i][0] + " (" + movies[i][3] + ")" +
+              "</button>"
+          );
+      }
+      $(".modal-close").text('Cancel')
+      $("#modal").modal();
+      $("#modal").modal("open");
+      $(".fav-btn").click(function (event) {
+          j = event.target.value;
+            imdbData1.Title = movies[j][0];
+            imdbData1.imdbID = movies[j][1];
+            firstDataSave(imdbData1)
+            $("#modal").modal("close");
+            secondDataLookup(movies[j][1]);
+      });
+  })
+});
+
 
 // Event Handler for Modal Close
 $(".modal-close").click(function (event) {
@@ -354,3 +386,6 @@ function resetModalInputs() {
   $("#modal-header").text("");
   $(".ml-btn").remove();
 }
+
+
+
