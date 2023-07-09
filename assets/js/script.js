@@ -16,9 +16,9 @@ if (movies && movies.length > 0) {
   $("#view-fav-btn").show();
   $("#remove-fav-btn").show();
 }
-$(document).ready(function(){
-    $('.tooltipped').tooltip();
-  });
+$(document).ready(function () {
+  $(".tooltipped").tooltip();
+});
 
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {
@@ -127,22 +127,25 @@ $(document).ready(function () {
 // Click handler for help button
 $(document).ready(function () {
   $("#help-btn").click(function () {
-      console.log("boo")
-      resetModalInputs();
-      var p1 = '<p class="help-mdl"><button class="btn"><i class="material-icons">search</i></button>Search the Movie Database for the Movie Name in the Search Bar</p>';
-      var p2 = '<p class="help-mdl"><button class="btn"><i class="material-icons">add_circle</i></button>Add current Movie to the Favourites Collection</p>';
-      var p3 = '<p class="help-mdl"><button class="btn"><i class="material-icons">remove_circle</i></button>Delete current Movie to the Favourites Collection</p>';
-      var p4 = '<p class="help-mdl"><button class="btn"><i class="material-icons">view_list</i></button>View the Favourites Collection</p>';
-      var p5 = '<p class="help-mdl"><button class="btn"><i class="material-icons">delete_forever</i></button>Delete the Favourites Collection</p>';
-      $("#modal-header").text("Help");
-      $(".modal-close").text('Cancel')
+    console.log("boo");
+    resetModalInputs();
+    var p1 =
+      '<p class="help-mdl"><button class="btn"><i class="material-icons">search</i></button>Search the Movie Database for the Movie Name in the Search Bar</p>';
+    var p2 =
+      '<p class="help-mdl"><button class="btn"><i class="material-icons">add_circle</i></button>Add current Movie to the Favourites Collection</p>';
+    var p3 =
+      '<p class="help-mdl"><button class="btn"><i class="material-icons">remove_circle</i></button>Delete current Movie to the Favourites Collection</p>';
+    var p4 =
+      '<p class="help-mdl"><button class="btn"><i class="material-icons">view_list</i></button>View the Favourites Collection</p>';
+    var p5 =
+      '<p class="help-mdl"><button class="btn"><i class="material-icons">delete_forever</i></button>Delete the Favourites Collection</p>';
+    $("#modal-header").text("Help");
+    $(".modal-close").text("Cancel");
 
-      $("#movie-list").append(
-          p1+p2+p3+p4+p5
-      )
-      $("#modal").modal();
-      $("#modal").modal("open");
-  })
+    $("#movie-list").append(p1 + p2 + p3 + p4 + p5);
+    $("#modal").modal();
+    $("#modal").modal("open");
+  });
 });
 
 // Event Handler for Modal Close
@@ -377,9 +380,9 @@ function fourthDataSave(fourthDataReturn) {
       tmdbData3[i].official === true
     ) {
       $(".video-container").append(
-        '<iframe id="trailer" width="853" height="480" frameborder="0" src="https://www.youtube.com/embed/' +
+        '<iframe id="trailer" width="853" height="480" allow="fullscreen;" allowfullscreen frameborder="0" src="https://www.youtube.com/embed/' +
           tmdbData3[i].key +
-          '?autoplay=1&origin=https%3A%2F%2Fwww.themoviedb.org&hl=en&modestbranding=1&fs=1&autohide=1"></iframe>'
+          '?autoplay=1&origin=https%3A%2F%2Fwww.themoviedb.org&hl=en&modestbranding=1&fs=1&autohide=1"></"iframe>'
       );
       break;
     }
