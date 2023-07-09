@@ -38,7 +38,37 @@ Movie Search will use the following technologies:
 5. Dayjs - a JavaScript library to simplify date manipulation
 6. Materialize - CSS framework
 7. OMDB API - access the The Open Movie Datbase using API calls and retrieve movie related data 
-8. TMDB API - access the The Movie Datbase using API calls and retrieve movie related data 
+8. TMDB API - access the The Movie Datbase using API calls and retrieve movie related data
+
+### API Requests
+There are 4 API requests at present.
+
+Each of the 4 API requests is broken into 2 functions, to make the code slightly more readable.
+
+The functions calls are prefixes with first, second third and fourth.
+
+
+            firstDataLookup     calls   firstAPICall
+                                calls   secondDataLookup    calls   secondAPICall
+                                calls   thirdDataLookup     calls   thirdAPICall
+                                calls   fourthDataLookup    calls   fourthAPICall
+
+The API Queries are asynchronous using the fetch... then... then... structure.
+To ensure data has been returned the code that processes that data is implemented within the 'second then' code block.
+
+* first APICall
+    * searches the OMDB database for movies matching the data entered in the Search Bar.
+        * if only 1 movie is found the data is retrieved immediately
+        * if more than 1 movie is found the list is displayed in a modal so the correct movie data can be retrieved
+        * IMDB Movie Name and IMDB Id are written to the web page in Panel 1
+* 2nd APICall
+    * searches the TMDB database for the IMDB Id and retrieves the related movie data
+        * TMDB Id, Release Date, Overview, Popularity are written to the web page in Panel 1
+        * the Poster Path is used to build the img src so the poster can be displayed in Panel 2
+* 3rd APICall
+    * searches the TMDB database for the TMDB Id and retrieves 3 movie reviews which are displayed in Panel 3
+* 4th APICall
+    * searches the TMDB database for the TMDB Id and retrieves 1 movie trailer which is displayed in Panel 4   
 
 ## Folder Structure
 ```
