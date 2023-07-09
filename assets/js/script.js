@@ -124,6 +124,27 @@ $(document).ready(function () {
   });
 });
 
+// Click handler for help button
+$(document).ready(function () {
+  $("#help-btn").click(function () {
+      console.log("boo")
+      resetModalInputs();
+      var p1 = '<p><button class="btn"><i class="material-icons">search</i></button>Search the Movie Database for the Movie Name in the Search Bar</p>';
+      var p2 = '<p><button class="btn"><i class="material-icons">add_circle</i></button>Add current Movie to the Favourites Collection</p>';
+      var p3 = '<p><button class="btn"><i class="material-icons">remove_circle</i></button>Delete current Movie to the Favourites Collection</p>';
+      var p4 = '<p><button class="btn"><i class="material-icons">view_list</i></button>View the Favourites Collection</p>';
+      var p5 = '<p><button class="btn"><i class="material-icons">delete_forever</i></button>Delete the Favourites Collection</p>';
+      $("#modal-header").text("Help");
+      $(".modal-close").text('Cancel')
+
+      $("#movie-list").append(
+          p1+p2+p3+p4+p5
+      )
+      $("#modal").modal();
+      $("#modal").modal("open");
+  })
+});
+
 // Event Handler for Modal Close
 $(".modal-close").click(function (event) {
   resetModalInputs();

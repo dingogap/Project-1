@@ -7,6 +7,22 @@
     width: 100%;
 }
 
+p i {
+    color: white;
+
+}
+
+#movie-list p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+#movie-list p button {
+    margin-right: 10px;
+}
+
 #movie-list {
     display: flex;
     flex-direction: column;
@@ -41,7 +57,7 @@ main {
 
     .btn {
         font-size: 12px;
-        font-weight:300;
+        font-weight: 300;
         padding: 0 8px;
     }
 
