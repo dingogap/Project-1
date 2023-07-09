@@ -491,7 +491,7 @@ $("#remove-fav-btn").click(function (event) {
   $("#del-fav-btn").hide();
   $("#view-fav-btn").hide();
   $("#remove-fav-btn").hide();
-  if (("#imdb-title").text().length() > 0) {
+  if ($("#imdb-title").text().length > 0) {
         $("#add-fav-btn").show();
     } else {
         $("#add-fav-btn").hide();
