@@ -382,7 +382,7 @@ function fourthDataSave(fourthDataReturn) {
       $(".video-container").append(
         '<iframe id="trailer" width="853" height="480" allow="fullscreen;" allowfullscreen frameborder="0" src="https://www.youtube.com/embed/' +
           tmdbData3[i].key +
-          '?autoplay=1&origin=https%3A%2F%2Fwww.themoviedb.org&hl=en&modestbranding=1&fs=1&autohide=1"></"iframe>'
+          '?autoplay=1&origin=https%3A%2F%2Fwww.themoviedb.org&hl=en&modestbranding=1&fs=1&autohide=1&allowFullScreen="allowFullScreen"></iframe>'
       );
       break;
     }
