@@ -16,6 +16,9 @@ if (movies && movies.length > 0) {
   $("#view-fav-btn").show();
   $("#remove-fav-btn").show();
 }
+$(document).ready(function(){
+    $('.tooltipped').tooltip();
+  });
 
 // Click handler for search button - won't work until the page is fully loaded
 $(document).ready(function () {

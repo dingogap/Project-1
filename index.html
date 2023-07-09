@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Movie Search</title>
 </head>
@@ -27,19 +28,21 @@
 
         <!-- Div for Buttons - each button has its own ID for the Click Handler -->
         <div class="row">
-            <button id="search-btn" class="btn waves-effect waves-light" type="submit" name="action">Search
+            <button id="search-btn" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Search for Movie" type="submit" name="action"><i class="material-icons">search</i>
             </button>
-            <button id="add-fav-btn" class="btn waves-effect waves-light" type="submit" style="display: none;"
-                name="action">Add To Favourites
+            <button id="add-fav-btn" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Add to Favourites" type="submit" style="display: none;"
+                name="action"><i class="material-icons">add_circle</i>
             </button>
-            <button id="del-fav-btn" class="btn waves-effect waves-light" style="display: none;" type="submit"
-                name="action">Delete From Favourites
+            <button id="del-fav-btn" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Delete from Favourites" style="display: none;" type="submit"
+                name="action"><i class="material-icons">remove_circle</i>
             </button>
-            <button id="view-fav-btn" class="btn waves-effect waves-light" style="display: none;" type="submit"
-                name="action">View Favourites
+            <button id="view-fav-btn" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="View Favourites" style="display: none;" type="submit"
+                name="action"><i class="material-icons">view_list</i>
             </button>
-            <button id="remove-fav-btn" class="btn waves-effect waves-light" style="display: none;" type="submit"
-                name="action">Remove All Favourites
+            <button id="remove-fav-btn" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Delete ALL Favourites"  style="display: none;" type="submit"
+                name="action"><i class="material-icons">delete_forever</i></button>
+            <button id="help-btn" class="btn waves-effect waves-light tooltipped" data-position="top" data-delay="50" data-tooltip="Help" type="submit"
+                name="action"><i class="material-icons">help</i></button>
         </div>
 
         <!-- Div to display Movie Data -->
