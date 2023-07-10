@@ -1,7 +1,6 @@
 # Movie Search
 
 ## Description
-
 Movie Search lets users search the TMDB database for information about movies and display it on an easy to use web page. Users can save their favourite movies to local storage for quick access in later sessions.
 
 Initially the web page will only display some of the information that is available to the APIs. Each type of information requires its own API call and this increases complexity and development time.
@@ -9,7 +8,6 @@ Initially the web page will only display some of the information that is availab
 Movie Search as built is considered the minimum viable product.
 
 ## Movie Search Link
-
 Click the link to visit the deployed website: [Movie Search][def1].
 
 ![Movie Search](assets/images/movieSearch.png)
@@ -32,99 +30,68 @@ There are 6 buttons but they are not all visible at once. If a button is visible
 All buttons have tool tips as a quick guide.
 
 ## Technologies
-
 Movie Search will use the following technologies:
-
 1. HTML - for page layout
 2. CSS - page styling
 3. JavaScript - coding
-4. jQuery - a JavaScript library to handle DOM traversal & manipulation & event handling
+4. jQuery - a JavaScript library to handle DOM traversal & manipulation & event handling 
 5. Dayjs - a JavaScript library to simplify date manipulation
 6. Materialize - CSS framework
-7. OMDB API - access the The Open Movie Datbase using API calls and retrieve movie related data
+7. OMDB API - access the The Open Movie Datbase using API calls and retrieve movie related data 
 8. TMDB API - access the The Movie Datbase using API calls and retrieve movie related data
-
-### API Requests
-
-There are 4 API requests at present.
-
-Each of the 4 API requests is broken into 2 functions, to make the code slightly more readable.
-
-The functions calls are prefixes with first, second third and fourth.
-
-            firstDataLookup     calls   firstAPICall
-                                calls   secondDataLookup    calls   secondAPICall
-                                calls   thirdDataLookup     calls   thirdAPICall
-                                calls   fourthDataLookup    calls   fourthAPICall
-
-The API Queries are asynchronous using the fetch... then... then... structure.
-To ensure data has been returned the code that processes that data is implemented within the 'second then' code block.
-
-- first APICall
-  - searches the OMDB database for movies matching the data entered in the Search Bar.
-    - if only 1 movie is found the data is retrieved immediately
-    - if more than 1 movie is found the list is displayed in a modal so the correct movie data can be retrieved
-    - IMDB Movie Name and IMDB Id are written to the web page in Panel 1
-- 2nd APICall
-  - searches the TMDB database for the IMDB Id and retrieves the related movie data
-    - TMDB Id, Release Date, Overview, Popularity are written to the web page in Panel 1
-    - the Poster Path is used to build the img src so the poster can be displayed in Panel 2
-- 3rd APICall
-  - searches the TMDB database for the TMDB Id and retrieves 3 movie reviews which are displayed in Panel 3
-- 4th APICall
-  - searches the TMDB database for the TMDB Id and retrieves 1 movie trailer which is displayed in Panel 4
+9. YouTube IFrame pleyer API 
 
 ## Folder Structure
-
 ```
 ├── assets
 │   ├── css
 │   │   ├── style.css
 │   │
 │   ├── js
-│       ├── script.js
+│       ├── script.js  
 │
 │   │
 │   ├── images
-│       ├── movieSearch.png
+│       ├── movieSearch.png 
 │
 ├── index.html
 ├── README.md
 ├── DOCO.md
-├── CODEBASE.md
+├── CODEBASE.md 
 └── .gitignore
 ```
+
+## Design
+Read the Movie Search [Design Document](./DESIGN.md)   
+
+## Test Plan
+Read the Movie Search [Test Plan](./TESTPLAN.md) 
 
 ## Implementation
 
 ### HTML
-
 Movie Search will be a simple index.html web page containing:
-
 1. Header Row - Page Title
 2. Search Bar - Input Field
-3. Button Bar - Search, Add to Favourites, Del from Favourites, View Favourites & Clear Favourites buttons
+3. Button Bar - Search, Add to Favourites, Del from Favourites, View Favourites & Clear Favourites buttons 
 4. Content Area comprising 4 panels
-   1. Panel 1 holds movie data
-   2. Panel 2 holds the movie poster
-   3. Panel 3 holds movie reviews
-   4. Panel 4 holds a movie trailer (if available)
+    1. Panel 1 holds movie data
+    2. Panel 2 holds the movie poster
+    3. Panel 3 holds movie reviews
+    4. Panel 4 holds a movie trailer (if available)
 5. Modal - the modal will list movie hits, favourites list and error messages
 
 ### CSS
-
 Most CSS will be handled by Materialize.
 
 Custom modifications will be in styles.css. These might be to adjust button layouts & display properties
 
 ### JavaScript
-
 The JavaScript code controls the way Movie Search works.
 
 Movie Search code will be driven by Button Clicks. Button visibility will be controlled by data. The presence or absence of data will control which buttons are visible and can be clicked.
 
 ## Resources Used
-
 1. Bootcamp Materials - Lesson Material from Week 6
 2. Prior knowlege and experience
 3. Group tutorial sessions
@@ -136,7 +103,9 @@ Movie Search code will be driven by Button Clicks. Button visibility will be con
 9. [MDM Web Docs][def10] Arrow function expressions
 10. [Open Movie Database API][def2] Documentation
 11. [The Movie Database API][def3] Documentation
-12. [Materialize][def4] Documentation
+12. [YouTube IFrame Player API][def11] Documentation
+13. [Materialize][def4] Documentation
+
 
 [def1]: https://dingogap.github.io/moviesearch/
 [def2]: https://www.omdbapi.com/
@@ -147,4 +116,7 @@ Movie Search code will be driven by Button Clicks. Button visibility will be con
 [def7]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
 [def8]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
 [def9]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-[def10]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+[def10]:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+[def11]: https://developers.google.com/youtube/iframe_api_reference
+
+
