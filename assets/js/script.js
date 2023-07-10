@@ -96,6 +96,7 @@ $("#del-fav-btn").click(function () {
 $(document).ready(function () {
   $("#view-fav-btn").click(function () {
     resetModalInputs();
+    $("#search-btn").hide();
     $("#modal-header").text("Favourite Movies");
     for (i = 0; i < movies.length; i++) {
       $("#movie-list").append(
