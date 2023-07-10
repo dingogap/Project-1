@@ -21,7 +21,7 @@ Once the movie name has been entered the user controls the web page actions with
 
 2. Click in Movie Name input field
     * when a user clicks in the Movie Name Input Field the input field gets focus
-    * if movies details are displayed when the user clicks in the input field the details are cleared
+    * if movie details are displayed when the user clicks in the input field the details are cleared
 
 
 3. Movie Name Entry
@@ -49,7 +49,7 @@ Once the movie name has been entered the user controls the web page actions with
 
         * clicking the Play Button will play the trailer
         * clicking the Full Screen button will display the video full screen  
-    * the Add To Favoourites button will be displayed if the Movie is not a Favourite
+    * the Add To Favourites button will be displayed if the Movie is not a Favourite
     * the Delete From Favourites Button will be displayed if the movie is a Favourite
 6. Clicking the Add To Favourites button
 
@@ -57,20 +57,21 @@ Once the movie name has been entered the user controls the web page actions with
     * hide the Add To Favourites button
     * reveal the View Favourites button if this was the 1st movie added to the Favourites Collection
     * reveal the Delete ALL Favourites button if this was the 1st movie added to the Favourites Collection
-    * reveal the Delete From Favourities button
+    * reveal the Delete From Favourites button
 7. Clicking the Delete From Favourites button will
 
-    * delete the current movie from the Favourities Collection
+    * delete the current movie from the Favourites Collection
     * hide the Delete From Favourites button
     * hide the View Favourites button if this was the last movie in the Favourites Collection
     * hide the Delete ALL Favourites button if this was the last movie in the Favourites Collection
     * reveal the Add To Favourities button
 8. Clicking the View Favourites button
     
+    * will hide the Search button 
     * will display a Modal with a list of all movies in the Favbourites Collection
         
         * clicking a movie from the list of movies will display that movies information
-        * clicking Canel will siomply close the Modal
+        * clicking Cancel will simply close the Modal
 9. Clicking the Delete ALL Favourites button
 
     * will delete the Favourites Collection

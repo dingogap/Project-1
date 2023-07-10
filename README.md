@@ -39,7 +39,7 @@ Movie Search will use the following technologies:
 6. Materialize - CSS framework
 7. OMDB API - access the The Open Movie Datbase using API calls and retrieve movie related data 
 8. TMDB API - access the The Movie Datbase using API calls and retrieve movie related data
-9. YouTube IFrame pleyer API 
+9. YouTube IFrame player API 
 
 ## Folder Structure
 ```
@@ -77,14 +77,14 @@ Movie Search will be a simple index.html web page containing:
 4. Content Area comprising 4 panels
     1. Panel 1 holds movie data
     2. Panel 2 holds the movie poster
-    3. Panel 3 holds movie reviews
+    3. Panel 3 holds movie reviews (if available)
     4. Panel 4 holds a movie trailer (if available)
 5. Modal - the modal will list movie hits, favourites list and error messages
 
 ### CSS
 Most CSS will be handled by Materialize.
 
-Custom modifications will be in styles.css. These might be to adjust button layouts & display properties
+Custom modifications will be in styles.css. These simply adjust button layouts & display properties
 
 ### JavaScript
 The JavaScript code controls the way Movie Search works.
@@ -92,7 +92,7 @@ The JavaScript code controls the way Movie Search works.
 Movie Search code will be driven by Button Clicks. Button visibility will be controlled by data. The presence or absence of data will control which buttons are visible and can be clicked.
 
 ## Resources Used
-1. Bootcamp Materials - Lesson Material from Week 6
+1. Bootcamp Materials - Lesson Material up to Week 6
 2. Prior knowlege and experience
 3. Group tutorial sessions
 4. [jQuery ][def5] jQuery API Documentation
