@@ -1,4 +1,4 @@
-# Movie Search
+# Movie Search Design
 
 ## Description
 Movie Search lets users search the TMDB database for information about movies using a simple web page. Users will be able to save their favourite movies to local storage for quick access in later sessions.
